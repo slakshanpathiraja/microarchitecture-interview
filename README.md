@@ -25,6 +25,7 @@ make start-all-dev
 | Project Management | 4002 | `npm run start:dev project-management`       |
 | Task Management    | 4003 | `npm run start:dev task-management`          |
 | Notifications      | 4004 | `npm run start:dev notifications`            |
+| Audit Logging      | 4005 | `npm run start:dev audit`                    |
 
 ## API Documentation & WebSockets
 
@@ -34,6 +35,7 @@ make start-all-dev
 | Project Management | [http://localhost:4002/swagger](http://localhost:4002/swagger) | `/api/v1`     | REST API    |
 | Task Management    | [http://localhost:4003/swagger](http://localhost:4003/swagger) | `/api/v1`     | REST API    |
 | Notifications      | `ws://localhost:4004` (No Swagger) | N/A         | WebSocket   |
+| Audit Logging      | [http://localhost:4005/swagger](http://localhost:4005/swagger) | `/api/v1`     | REST API    |
 
 For the REST APIs, you can access their interactive Swagger UI by navigating to the URLs provided in the table above.
 
@@ -48,3 +50,4 @@ The Nginx Gateway runs on port **4000** and routes external traffic to the inter
 | `/project-management/` | Project Management | 4002 | `http://localhost:4000/project-management/api/v1/...` |
 | `/task-management/` | Task Management | 4003 | `http://localhost:4000/task-management/api/v1/...` |
 | `/ws/` | Notifications (WebSocket) | 4004 | `ws://localhost:4000/ws/...` |
+| `/audit/` | Audit Logging | 4005 | `http://localhost:4000/audit/api/v1/...` |

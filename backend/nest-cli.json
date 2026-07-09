@@ -10,6 +10,15 @@
   "monorepo": true,
   "root": "apps/authentication",
   "projects": {
+    "audit": {
+      "type": "application",
+      "root": "apps/audit",
+      "entryFile": "main",
+      "sourceRoot": "apps/audit/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/audit/tsconfig.app.json"
+      }
+    },
     "authentication": {
       "type": "application",
       "root": "apps/authentication",

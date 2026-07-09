@@ -1,19 +1,23 @@
 import { Module } from '@nestjs/common';
 import { TaskManagementController } from './task-management.controller';
 import { TaskManagementService } from './task-management.service';
-import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule, RedisModule } from '@app/db';
+import { CommonConfigModule, AuditInterceptor } from '@app/common';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      envFilePath: '../.env',
-      isGlobal: true,
-    }),
+    CommonConfigModule,
     DatabaseModule,
     RedisModule,
   ],
   controllers: [TaskManagementController],
-  providers: [TaskManagementService],
+  providers: [
+    TaskManagementService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: AuditInterceptor,
+    },
+  ],
 })
 export class TaskManagementModule {}
