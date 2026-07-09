@@ -3,13 +3,13 @@ import { AuditService } from './audit.service';
 import { JwtAuthGuard, AuthorizationGuard, Authorize, UserRole, Authorization, AuthenticatedUser } from '@app/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @Controller('audit')
 export class AuditController {
   constructor(private readonly auditService: AuditService) {}
 
   @Get()
   @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
   getHello(@Authorization() user: AuthenticatedUser): string {
     return 'Audit service is online';
   }
@@ -19,7 +19,6 @@ export class AuditController {
   @UseGuards(JwtAuthGuard, AuthorizationGuard)
   @Authorize(UserRole.ADMINISTRATOR)
   @HttpCode(HttpStatus.OK)
-  @ApiBearerAuth()
   @ApiOperation({ summary: 'Get all audit logs (Admin only)' })
   @ApiResponse({ status: 200, description: 'Audit logs retrieved successfully.' })
   @ApiResponse({ status: 401, description: 'Invalid or missing access token.' })
